@@ -14,7 +14,7 @@ client.on('ready', () => {
   console.log('---------------')
 });
 
-const prefix = "2"
+const prefix = "s"
 client.on('message', async msg => {
 	if (msg.author.bot) return undefined;
 	
@@ -237,6 +237,7 @@ client.on("message", message => {
   const embed = new Discord.RichEmbed() 
       .setColor("#000000")
       .setDescription(`
+${prefix}join ⇏ لدخول البوت الروم
 ${prefix}play ⇏ لتشغيل أغنية برآبط أو بأسم
 ${prefix}skip ⇏ لتجآوز الأغنية الحآلية
 ${prefix}pause ⇏ إيقآف الأغنية مؤقتا
@@ -257,7 +258,7 @@ ${prefix}queue ⇏ لمعرفة قآئمة التشغيل
 
 
 client.on('message', function(message) {
-	const myID = "389505536090963970";
+	const myID = "489474998298476594";
     let args = message.content.split(" ").slice(1).join(" ");
     if(message.content.startsWith(prefix + "setname")) {
 		        if(message.author.id !== myID) return;
@@ -315,7 +316,7 @@ client.on('message', function(message) {
 
 client.on('message', async message => {
             if(!message.channel.guild) return;
-             if (message.content.startsWith("2")) {
+             if (message.content.startsWith("s")) {
 let args = message.content.split(' ').slice(1).join(' ');
             let sigMessage = await args;
             
@@ -339,6 +340,25 @@ let args = message.content.split(' ').slice(1).join(' ');
         
 }
 });
+
+
+
+  client.on('message', message => {
+  if (!message.guild) return;
+
+  if (message.content === 'sjoin') {
+    if (message.member.voiceChannel) {
+      message.member.voiceChannel.join()
+        .then(connection => { 
+        })
+        .catch(console.log);
+    } else {
+      message.reply('يجب ان تكون في روم صوتي');
+    }
+  }
+});
+  
+
 
    
 client.login(process.env.BOT_TOKEN);
